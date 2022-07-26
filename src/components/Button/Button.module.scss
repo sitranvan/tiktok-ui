@@ -21,6 +21,12 @@
 .title + .icon {
     margin-left: 8px;
 }
+
+.icon {
+    width: 24px;
+    text-align: center;
+}
+
 .rounded {
     border-radius: 999px;
     border-color: rgba(22, 24, 35, 0.12);
