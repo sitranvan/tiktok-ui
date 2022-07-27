@@ -1,7 +1,7 @@
 .wrapper {
     --search-border-radius: 92px;
     --search-height: 46px;
-    --search-top-distance: 9px;
+    --search-top-spacer: 9px;
     --search-btn-width: 52px;
     width: 100%;
     height: var(--default-layout-header-height);
@@ -12,6 +12,7 @@
 .inner {
     height: 100%;
     width: var(--default-layout-width);
+    padding: 0 var(--default-layout-horizontal-spacer);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -45,11 +46,11 @@
 
     &::after {
         content: '';
-        top: var(--search-top-distance);
+        top: var(--search-top-spacer);
         right: var(--search-btn-width);
         position: absolute;
         width: 1px;
-        height: calc(var(--search-height) - var(--search-top-distance) * 2);
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
         background-color: rgba(22, 24, 35, 0.12);
     }
 
@@ -97,5 +98,5 @@
     margin-left: 28px;
     padding: 4px 8px;
     background-color: transparent;
+    cursor: pointer;
 }
-
