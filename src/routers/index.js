@@ -4,13 +4,14 @@ import Following from '~/pages/Following';
 import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
+import routesConfig from '~/config/routes';
 // Dùng cho những routers không cần đăng nhập vẫn xem được
 const publlicRoutes = [
-    { path: '/', component: Home },
-    { path: '/following', component: Following },
-    { path: '/@:nickname', component: Profile },
-    { path: '/upload', component: Upload, layout: HeaderOnly },
-    { path: '/search', component: Search, layout: null },
+    { path: routesConfig.home, component: Home },
+    { path: routesConfig.following, component: Following },
+    { path: routesConfig.profile, component: Profile },
+    { path: routesConfig.upload, component: Upload, layout: HeaderOnly },
+    { path: routesConfig.upload, component: Search, layout: null },
 ];
 
 // Cần phải đăng nhập, nếu không đăng nhập sẽ chuyển hướng sang trang login

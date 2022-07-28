@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: space-between;
 }
-.logo {
+.logo-link {
     display: flex;
 }
 
@@ -58,6 +58,7 @@
     padding: 0 6px;
     font-size: 1.4rem;
     color: var(--white);
+    font-family: var(--font-family);
 }
 
 .user-avatar {
