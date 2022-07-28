@@ -1,41 +1,27 @@
-import {
-    faCircleXmark,
-    faCoins,
-    faEarthAfrica,
-    faEllipsisVertical,
-    faGear,
-    faKeyboard,
-    faQuestionCircle,
-    faSignOut,
-    faSpinner,
-    faUser,
-} from '@fortawesome/free-solid-svg-icons';
-import React, { useEffect, useState } from 'react';
+import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react/';
-import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
+import React from 'react';
 import 'tippy.js/dist/tippy.css';
 import images from '~/assets/images';
 import Button from '~/components/Button';
 import {
-    InboxIcon,
-    MessageIcon,
-    SearchIcon,
-    UploadIcon,
-    LanguageIcon,
-    ProfileIcon,
     CoinIcon,
-    SettingIcon,
     FeedbackIcon,
+    InboxIcon,
     KeyboardIcon,
+    LanguageIcon,
     LogoutIcon,
+    MessageIcon,
+    ProfileIcon,
+    SettingIcon,
+    UploadIcon,
 } from '~/components/Icons';
-import { Wrapper as PropperWrapper } from '~/components/Propper';
-import Menu from '~/components/Propper/Menu';
-import AccountItem from '../AccountItem';
-import styles from './Header.module.scss';
 import Image from '~/components/Image';
+import Menu from '~/components/Propper/Menu';
+import Search from '../Search';
+import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -70,14 +56,7 @@ const MENU_ITEMS = [
     },
 ];
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
     const currentUser = true;
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]); // fake dữ liệu
-        }, 0);
-    }, []);
-
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
@@ -118,34 +97,7 @@ function Header() {
                 <div className={cx('logo')}>
                     <img src={images.logo} alt="Tiktok" />
                 </div>
-                <HeadlessTippy
-                    interactive
-                    visible={searchResult.length > 0} // Tự cho ẩn hiện nếu có kết quả tìm kiếm
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            {/* PropperWrapper có chiều dài bằng phần tử cha search-result */}
-                            <PropperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PropperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search accounts and videos" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                <Search />
                 <div className={cx('action')}>
                     {currentUser ? (
                         <React.Fragment>
