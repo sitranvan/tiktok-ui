@@ -1,22 +1,29 @@
+import PropTypes from 'prop-types';
 import { forwardRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Image.module.scss';
 import images from '~/assets/images';
-const cx = classNames.bind(styles);
-function Image({ src, alt, fallBack = images.noImage, className }, ref) {
-    const [srcFallback, setSrcFallback] = useState('');
-    const handleError = () => {
-        setSrcFallback(fallBack);
+const Image = forwardRef(({ className, src, alt, fallback: propFallback = images.errorImage, ...props }, ref) => {
+    const [fallback, setFallback] = useState('');
+    const handleFallback = () => {
+        setFallback(propFallback);
     };
     return (
         <img
-            className={cx(styles.wrapper, className)}
+            className={classNames(styles.wrapper, className)}
             ref={ref}
-            src={srcFallback || src}
+            src={fallback || src}
             alt={alt}
-            onError={handleError}
+            {...props}
+            onError={handleFallback}
         />
     );
-}
+});
 
-export default forwardRef(Image);
+Image.propTypes = {
+    className: PropTypes.string,
+    src: PropTypes.string,
+    alt: PropTypes.string,
+    fallback: PropTypes.string,
+};
+export default Image;

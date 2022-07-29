@@ -7,8 +7,8 @@ import 'tippy.js/dist/tippy.css';
 import { SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks';
 import { Wrapper as PropperWrapper } from '~/components/Propper';
-import AccountItem from '../AccountItem';
-import * as searchServices from '~/apiServices/searchServices';
+import AccountItem from '../../../components/AccountItem';
+import * as searchServices from '~/services/searchService';
 import styles from './Search.module.scss';
 const cx = classNames.bind(styles);
 function Search() {
