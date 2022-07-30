@@ -30,10 +30,6 @@ html *::-webkit-scrollbar {
     border-radius: 0;
     width: 8px;
 }
-html *::-webkit-scrollbar {
-    border-radius: 0;
-    width: 8px;
-}
 html *::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.15);
@@ -48,7 +44,7 @@ input,
     outline: none;
     border: none;
 }
-a[href] {
+a {
     text-decoration: none;
     color: var(--text-color);
 }

@@ -5,34 +5,34 @@ import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 import 'tippy.js/dist/tippy.css';
 import { SearchIcon } from '~/components/Icons/Icon';
-import { useDebounce } from '~/hooks';
 import { Wrapper as PropperWrapper } from '~/components/Propper';
-import AccountItem from '~/components/AccountItem';
+import { useDebounce } from '~/hooks';
 import * as searchServices from '~/services/searchService';
+import SearchResult from '../SearchResult';
 import styles from './Search.module.scss';
 const cx = classNames.bind(styles);
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
+    const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
     const inputRef = useRef();
 
-    const debounced = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 500);
 
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
         const fetchAPI = async () => {
             setLoading(true);
-            const result = await searchServices.search(debounced);
+            const result = await searchServices.search(debouncedValue);
             setSearchResult(result);
             setLoading(false);
         };
         fetchAPI();
-    }, [debounced]);
+    }, [debouncedValue]);
 
     const handleChangeValue = (e) => {
         const searchValue = e.target.value;
@@ -61,9 +61,7 @@ function Search() {
                         {/* PropperWrapper có chiều dài bằng phần tử cha search-result */}
                         <PropperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-                            {searchResult.map((result) => (
-                                <AccountItem key={result.id} data={result} />
-                            ))}
+                            <SearchResult searchResult={searchResult} />
                         </PropperWrapper>
                     </div>
                 )}
